@@ -46,19 +46,19 @@ function validarId(tarea){
 }
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname,  'index.html'));
+    res.sendFile(path.join(__dirname, '/front', 'index.html'));
 });
 
 app.get('/main.css', function (req, res) {
-    res.sendFile(path.join(__dirname, '../front', 'main.css'));
+    res.sendFile(path.join(__dirname, '/front', 'main.css'));
 });
 
 app.get('/moment.js', function (req, res) {
-    res.sendFile(path.join(__dirname, '../front', 'moment.js'));
+    res.sendFile(path.join(__dirname, '/front', 'moment.js'));
 });
 
 app.get('/model.js', function (req, res) {
-    res.sendFile(path.join(__dirname, '../front', 'model.js'));
+    res.sendFile(path.join(__dirname, '/front', 'model.js'));
 });
 
 app.get('/todos', function (req, res) {
