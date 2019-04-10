@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>To-Do</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.3/vue.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/node-uuid/1.4.7/uuid.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="moment.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1 class="text-center">Listado de tareas</h1>
+    </header>
+    <div id="app" class="container">
+        <section>
+            <article lass="error" v-if="errored">
+                <strong>
+                    <p>Lo sentimos, no podemos recuperar esta información en este momento.
+                        Inténtalo de nuevo más tarde.</p>
+                </strong>
+            </article>
+            <article>
+                <table class="table table-bordered table-striped">
+                    <th>Título</th>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Acciones</th>
+                    <tr v-for="tarea in info" v-bind:key="tarea.id">
+                        <td v-bind:class="{ 'done' : tarea.done }">{{tarea.title}}</td>
+                        <td v-bind:class="{ 'done' : tarea.done }">{{tarea.date}}</td>
+                        <td v-bind:class="{ 'done' : tarea.done }">{{tarea.time}}</td>
+                        <td>
+                            <span class="glyphicon glyphicon-ok" v-if="!tarea.done"
+                                v-on:click="updateTick(tarea)" id="ok"></span>
+                            <span class="glyphicon glyphicon-remove" v-on:click="deleteItem(tarea)" id="del"></span>
+                            <span class="glyphicon glyphicon-pencil" v-on:click="showItem(tarea)" id="upd"></span>
+                        </td>
+                    </tr>
+                </table>
+            </article>
+            <hr />
+            <article class="col-xs-12 text-center">
+                <span><strong>Tareas pendientes: {{ contadorTareasPendientes }}</strong></span> ||
+                <span><strong>Tareas terminadas: {{ contadorTareasTerminadas }}</strong></span> ||
+                <span><strong>Tareas totales: {{ contadorTareasTotales }}</strong></span>
+            </article>
+        </section>
+        <section>
+            <article class="col-xs-5">
+                <h1>Añadir tarea:</h1>
+                <input type="hidden" v-model="newTask.id" class="form-control" />
+                <input type="text" v-model="newTask.title" class="form-control" id="title" placeholder="Titulo" />
+                <input type="date" v-model="newTask.date" class="form-control" id="date" />
+                <input type="time" v-model="newTask.time" class="form-control" id="time" />
+                <button id="add" class="btn btn-default" v-on:click="newItem">Añadir</button>
+                <button id="mod" class="btn btn-default" v-on:click="updateItem(newTask)">Actualizar</button>
+            </article>
+        </section>
+        <section class="errorP">
+            <article class="error col-xs-6" v-for="error in errores">
+                <strong><span>{{error}}</span><br /></strong>
+            </article>
+        </section>
+    </div>
+</body>
+    <script src="model.js"></script>
+</html>
