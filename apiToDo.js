@@ -46,7 +46,7 @@ function validarId(tarea){
 }
 
 app.get('/', function (req, res) {
-    res.sendFile(path.join(__dirname, '../front', 'index.html'));
+    res.sendFile(path.join(__dirname,  'index.html'));
 });
 
 app.get('/main.css', function (req, res) {
