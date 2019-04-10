@@ -26,7 +26,7 @@ new Vue({
     },
     dameDatos: function () {
       axios
-        .get('http://localhost:3000/todos')
+        .get('https://newtodos.herokuapp.com//todos')
         .then(response => {
           this.errored = false;
           this.info = response.data;
@@ -53,7 +53,7 @@ new Vue({
       errorDatos = this.validarDatos(this.newTask);
       if (errorDatos.length == 0) {
         axios
-          .post('http://localhost:3000/newTask', {
+          .post('https://newtodos.herokuapp.com//newTask', {
             task: this.newTask,
           })
           .then(response => {
@@ -76,7 +76,7 @@ new Vue({
     },
     deleteItem: function (tarea) { //Refactorizado
       axios
-        .delete('http://localhost:3000/byeTask/' + tarea.id, {
+        .delete('https://newtodos.herokuapp.com//byeTask/' + tarea.id, {
         })
         .then(response => {
           this.errored = false;
@@ -91,7 +91,7 @@ new Vue({
     },
     updateTick: function (tarea) { //Refactorizado
       axios
-        .put('http://localhost:3000/tick/' + tarea.id, {
+        .put('https://newtodos.herokuapp.com//tick/' + tarea.id, {
           task: tarea
         })
         .then(response => {
@@ -106,7 +106,7 @@ new Vue({
       errorDatos = this.validarDatos(tarea);
       if (errorDatos.length == 0) {
         axios
-          .put('http://localhost:3000/task/' + tarea.id, tarea)
+          .put('https://newtodos.herokuapp.com//task/' + tarea.id, tarea)
           .then(response => {
             this.errored = false;
             this.errores = "";
@@ -127,7 +127,7 @@ new Vue({
     },
     showItem: function (tarea) { //Refactorizado
       axios
-        .get('http://localhost:3000/')
+        .get('https://newtodos.herokuapp.com')
         .then(response => {
           this.errored = false;
           this.errores = "";
