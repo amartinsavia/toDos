@@ -26,7 +26,7 @@ new Vue({
     },
     dameDatos: function () {
       axios
-        .get('https://newtodos.herokuapp.com/todos')
+        .get('https://newtodos.herokuapp.com/
         .then(response => {
           this.errored = false;
           this.info = response.data;
