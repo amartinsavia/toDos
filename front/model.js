@@ -90,7 +90,18 @@ new Vue({
         })
     },
     updateTick: function (tarea) { //Refactorizado
-     
+      axios
+        .put('https://newtodos.herokuapp.com/tick/' + tarea.id, {
+          task: tarea
+        })
+        .then(response => {
+          this.dameDatos();
+        })
+        .catch(error => {
+          console.log(error);
+          this.errored = true;
+        })
+    },
     updateItem: function (tarea) { //Refactorizado
       errorDatos = this.validarDatos(tarea);
       if (errorDatos.length == 0) {
