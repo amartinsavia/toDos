@@ -1,0 +1,3 @@
+#Sirve para que el comando COPY no copie a la imagen cosas que son propias de nuestro ambiente de desarrollo local no dockerizado
+node_modules
+npm-debug.log
